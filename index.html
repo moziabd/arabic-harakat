@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>الحروف مع الحركات — النطق</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1612;
+    --paper: #f5efe4;
+    --paper-2: #ebe2d1;
+    --gold: #b8893a;
+    --gold-deep: #8a6420;
+    --accent: #7a2e1f;
+    --accent-soft: #a4513f;
+    --muted: #6b5d48;
+    --line: #d4c5a8;
+    --fatha: #7a2e1f;
+    --kasra: #2d5a3d;
+    --damma: #5a4a8c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Amiri', serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(184,137,58,0.08) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(122,46,31,0.06) 0%, transparent 45%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    padding: 24px 0 36px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .ornament {
+    color: var(--gold);
+    font-size: 24px;
+    letter-spacing: 8px;
+    margin-bottom: 12px;
+    user-select: none;
+  }
+
+  h1 {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: clamp(26px, 5.5vw, 42px);
+    letter-spacing: 0;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  h1 .ar {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .sub {
+    font-family: 'Amiri', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+
+  /* Legend */
+  .legend {
+    background: linear-gradient(180deg, #fefcf7 0%, var(--paper-2) 100%);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 20px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .legend::before, .legend::after {
+    content: '❖';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    font-size: 12px;
+    opacity: 0.6;
+  }
+  .legend::before { right: 8px; }
+  .legend::after { left: 8px; }
+
+  .legend-title {
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+
+  .legend-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .legend-item {
+    text-align: center;
+    padding: 8px 4px;
+  }
+
+  .legend-glyph {
+    font-family: 'Amiri', serif;
+    font-size: 32px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .legend-glyph.fatha { color: var(--fatha); }
+  .legend-glyph.kasra { color: var(--kasra); }
+  .legend-glyph.damma { color: var(--damma); }
+
+  .legend-name {
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .legend-sound {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 2px;
+    font-family: 'Amiri', serif;
+  }
+
+  /* Hint */
+  .hint {
+    text-align: center;
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 20px;
+    font-family: 'Amiri', serif;
+  }
+
+  /* Chart */
+  .chart-header {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 0 12px 12px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 6px;
+    font-family: 'Amiri', serif;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+
+  .chart-header > div { text-align: center; }
+  .chart-header > div:first-child { text-align: right; }
+
+  .header-fatha { color: var(--fatha) !important; }
+  .header-kasra { color: var(--kasra) !important; }
+  .header-damma { color: var(--damma) !important; }
+
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 8px 12px;
+    align-items: center;
+    border-bottom: 1px solid rgba(212,197,168,0.4);
+    transition: background 0.15s;
+  }
+
+  .chart-row:hover { background: rgba(184,137,58,0.04); }
+
+  .name-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    text-align: right;
+  }
+
+  .name-en {
+    font-family: 'Amiri', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .name-translit {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0;
+    font-family: 'Amiri', serif;
+  }
+
+  .syllable-cell {
+    text-align: center;
+    cursor: pointer;
+    padding: 8px 4px;
+    border-radius: 3px;
+    transition: background 0.15s, transform 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    position: relative;
+  }
+
+  .syllable-cell:hover {
+    background: rgba(184,137,58,0.10);
+  }
+
+  .syllable-cell:active { transform: scale(0.93); }
+
+  .syllable-cell.playing {
+    background: rgba(184,137,58,0.25);
+  }
+
+  .syllable-cell.playing .syllable-glyph {
+    color: var(--accent);
+  }
+
+  .syllable-glyph {
+    font-family: 'Amiri', serif;
+    font-size: clamp(26px, 5.5vw, 34px);
+    line-height: 1.2;
+    color: var(--ink);
+    transition: color 0.15s;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .syllable-romanization {
+    font-family: 'Amiri', serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+
+  /* Voice status */
+  .voice-status {
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 16px;
+    min-height: 16px;
+    font-family: 'Amiri', serif;
+  }
+
+  /* Practice section */
+  .practice {
+    margin-top: 36px;
+    padding: 24px 20px;
+    background: linear-gradient(180deg, #fefcf7 0%, var(--paper-2) 100%);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .practice-title {
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+    color: var(--muted);
+    letter-spacing: 0;
+    margin-bottom: 10px;
+  }
+
+  .practice-word {
+    font-family: 'Amiri', serif;
+    font-size: clamp(36px, 8vw, 48px);
+    color: var(--ink);
+    cursor: pointer;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .practice-word:hover {
+    background: rgba(184,137,58,0.12);
+  }
+
+  .practice-word:active { transform: scale(0.96); }
+
+  .practice-word.playing {
+    background: rgba(184,137,58,0.25);
+    color: var(--accent);
+  }
+
+  .practice-translation {
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .practice-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: 16px;
+    color: var(--muted);
+  }
+
+  footer .orn-small {
+    color: var(--gold);
+    margin: 0 8px;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 600px) {
+    .legend-grid { gap: 6px; }
+    .legend-glyph { font-size: 26px; }
+    .legend-name { font-size: 14px; }
+    .legend-sound { font-size: 11px; }
+    .chart-header { font-size: 11px; padding: 0 6px 8px; gap: 4px; }
+    .chart-row { padding: 6px 6px; gap: 4px; }
+    .name-en { font-size: 15px; }
+    .name-translit { font-size: 11px; }
+    .syllable-cell { padding: 6px 2px; }
+    .syllable-romanization { font-size: 11px; }
+  }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="ornament">❖ ❖ ❖</div>
+    <h1>الحروف مع الحركات · <span class="ar">الحَرَكات</span></h1>
+    <div class="sub">تعلّم نطق الحروف الهجائية</div>
+  </header>
+
+  <div class="legend">
+    <div class="legend-title">الحركات القصيرة الثلاث</div>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-glyph fatha">بَ</div>
+        <div class="legend-name">فَتحة</div>
+        <div class="legend-sound">صوت «أَ» كما في <em>بَيت</em></div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-glyph kasra">بِ</div>
+        <div class="legend-name">كَسرة</div>
+        <div class="legend-sound">صوت «إِ» كما في <em>بِئر</em></div>
+      </div>
+      <div class="legend-item">
+        <div class="legend-glyph damma">بُ</div>
+        <div class="legend-name">ضَمّة</div>
+        <div class="legend-sound">صوت «أُ» كما في <em>بُرج</em></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint">اضغط على أي مقطع لسماع نطقه</p>
+
+  <div class="chart-header">
+    <div>الحرف</div>
+    <div class="header-fatha">فَتحة َ</div>
+    <div class="header-kasra">كَسرة ِ</div>
+    <div class="header-damma">ضَمّة ُ</div>
+  </div>
+
+  <div id="chart"></div>
+
+  <div class="voice-status" id="voice-status"></div>
+
+  <!-- Practice words -->
+  <div class="practice">
+    <div class="practice-title">✦ تدرَّب على هذه الكلمات ✦</div>
+    <div class="practice-row">
+      <div>
+        <div class="practice-word" data-word="بَيْت">بَيْت</div>
+        <div class="practice-translation">بَيْت — مسكن</div>
+      </div>
+    </div>
+    <div class="practice-row">
+      <div>
+        <div class="practice-word" data-word="كِتاب">كِتاب</div>
+        <div class="practice-translation">كِتاب — مؤلَّف مكتوب</div>
+      </div>
+      <div>
+        <div class="practice-word" data-word="قَلَم">قَلَم</div>
+        <div class="practice-translation">قَلَم — أداة الكتابة</div>
+      </div>
+      <div>
+        <div class="practice-word" data-word="باب">باب</div>
+        <div class="practice-translation">باب — مدخل</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span class="orn-small">✦</span>
+    انطق كل مقطع على حدة، ثم اجمعها معًا
+    <span class="orn-small">✦</span>
+  </footer>
+
+</div>
+
+<script>
+  // Each letter with its three vowel forms
+  const letters = [
+    { name: 'أَلِف',  translit: 'ألف',  base: 'ا', fa: 'أَ', fa_r: 'أَ',   ki: 'إِ', ki_r: 'إِ',   du: 'أُ', du_r: 'أُ',   sFa: 'أَ', sKi: 'إِ', sDu: 'أُ' },
+    { name: 'بَاء',    translit: 'باء',    base: 'ب', fa: 'بَ', fa_r: 'بَ',  ki: 'بِ', ki_r: 'بِ',  du: 'بُ', du_r: 'بُ',  sFa: 'بَ', sKi: 'بِ', sDu: 'بُ' },
+    { name: 'تَاء',    translit: 'تاء',    base: 'ت', fa: 'تَ', fa_r: 'تَ',  ki: 'تِ', ki_r: 'تِ',  du: 'تُ', du_r: 'تُ',  sFa: 'تَ', sKi: 'تِ', sDu: 'تُ' },
+    { name: 'ثَاء',   translit: 'ثاء',   base: 'ث', fa: 'ثَ', fa_r: 'ثَ', ki: 'ثِ', ki_r: 'ثِ', du: 'ثُ', du_r: 'ثُ', sFa: 'ثَ', sKi: 'ثِ', sDu: 'ثُ' },
+    { name: 'جِيم',   translit: 'جيم',    base: 'ج', fa: 'جَ', fa_r: 'جَ',  ki: 'جِ', ki_r: 'جِ',  du: 'جُ', du_r: 'جُ',  sFa: 'جَ', sKi: 'جِ', sDu: 'جُ' },
+    { name: 'حَاء',    translit: 'حاء',    base: 'ح', fa: 'حَ', fa_r: 'حَ',  ki: 'حِ', ki_r: 'حِ',  du: 'حُ', du_r: 'حُ',  sFa: 'حَ', sKi: 'حِ', sDu: 'حُ' },
+    { name: 'خَاء',   translit: 'خاء',   base: 'خ', fa: 'خَ', fa_r: 'خَ', ki: 'خِ', ki_r: 'خِ', du: 'خُ', du_r: 'خُ', sFa: 'خَ', sKi: 'خِ', sDu: 'خُ' },
+    { name: 'دَال',   translit: 'دال',    base: 'د', fa: 'دَ', fa_r: 'دَ',  ki: 'دِ', ki_r: 'دِ',  du: 'دُ', du_r: 'دُ',  sFa: 'دَ', sKi: 'دِ', sDu: 'دُ' },
+    { name: 'ذَال',  translit: 'ذال',   base: 'ذ', fa: 'ذَ', fa_r: 'ذَ', ki: 'ذِ', ki_r: 'ذِ', du: 'ذُ', du_r: 'ذُ', sFa: 'ذَ', sKi: 'ذِ', sDu: 'ذُ' },
+    { name: 'رَاء',    translit: 'راء',    base: 'ر', fa: 'رَ', fa_r: 'رَ',  ki: 'رِ', ki_r: 'رِ',  du: 'رُ', du_r: 'رُ',  sFa: 'رَ', sKi: 'رِ', sDu: 'رُ' },
+    { name: 'زَاي',   translit: 'زاي',    base: 'ز', fa: 'زَ', fa_r: 'زَ',  ki: 'زِ', ki_r: 'زِ',  du: 'زُ', du_r: 'زُ',  sFa: 'زَ', sKi: 'زِ', sDu: 'زُ' },
+    { name: 'سِين',   translit: 'سين',    base: 'س', fa: 'سَ', fa_r: 'سَ',  ki: 'سِ', ki_r: 'سِ',  du: 'سُ', du_r: 'سُ',  sFa: 'سَ', sKi: 'سِ', sDu: 'سُ' },
+    { name: 'شِين',  translit: 'شين',   base: 'ش', fa: 'شَ', fa_r: 'شَ', ki: 'شِ', ki_r: 'شِ', du: 'شُ', du_r: 'شُ', sFa: 'شَ', sKi: 'شِ', sDu: 'شُ' },
+    { name: 'صَاد',   translit: 'صاد',    base: 'ص', fa: 'صَ', fa_r: 'صَ',  ki: 'صِ', ki_r: 'صِ',  du: 'صُ', du_r: 'صُ',  sFa: 'صَ', sKi: 'صِ', sDu: 'صُ' },
+    { name: 'ضَاد',   translit: 'ضاد',    base: 'ض', fa: 'ضَ', fa_r: 'ضَ',  ki: 'ضِ', ki_r: 'ضِ',  du: 'ضُ', du_r: 'ضُ',  sFa: 'ضَ', sKi: 'ضِ', sDu: 'ضُ' },
+    { name: 'طَاء',  translit: 'طاء',    base: 'ط', fa: 'طَ', fa_r: 'طَ',  ki: 'طِ', ki_r: 'طِ',  du: 'طُ', du_r: 'طُ',  sFa: 'طَ', sKi: 'طِ', sDu: 'طُ' },
+    { name: 'ظَاء',  translit: 'ظاء',    base: 'ظ', fa: 'ظَ', fa_r: 'ظَ',  ki: 'ظِ', ki_r: 'ظِ',  du: 'ظُ', du_r: 'ظُ',  sFa: 'ظَ', sKi: 'ظِ', sDu: 'ظُ' },
+    { name: 'عَيْن',   translit: 'عين',   base: 'ع', fa: 'عَ', fa_r: 'عَ',  ki: 'عِ', ki_r: 'عِ',  du: 'عُ', du_r: 'عُ',  sFa: 'عَ', sKi: 'عِ', sDu: 'عُ' },
+    { name: 'غَيْن', translit: 'غين',  base: 'غ', fa: 'غَ', fa_r: 'غَ', ki: 'غِ', ki_r: 'غِ', du: 'غُ', du_r: 'غُ', sFa: 'غَ', sKi: 'غِ', sDu: 'غُ' },
+    { name: 'فَاء',    translit: 'فاء',    base: 'ف', fa: 'فَ', fa_r: 'فَ',  ki: 'فِ', ki_r: 'فِ',  du: 'فُ', du_r: 'فُ',  sFa: 'فَ', sKi: 'فِ', sDu: 'فُ' },
+    { name: 'قَاف',   translit: 'قاف',    base: 'ق', fa: 'قَ', fa_r: 'قَ',  ki: 'قِ', ki_r: 'قِ',  du: 'قُ', du_r: 'قُ',  sFa: 'قَ', sKi: 'قِ', sDu: 'قُ' },
+    { name: 'كَاف',   translit: 'كاف',    base: 'ك', fa: 'كَ', fa_r: 'كَ',  ki: 'كِ', ki_r: 'كِ',  du: 'كُ', du_r: 'كُ',  sFa: 'كَ', sKi: 'كِ', sDu: 'كُ' },
+    { name: 'لَام',   translit: 'لام',    base: 'ل', fa: 'لَ', fa_r: 'لَ',  ki: 'لِ', ki_r: 'لِ',  du: 'لُ', du_r: 'لُ',  sFa: 'لَ', sKi: 'لِ', sDu: 'لُ' },
+    { name: 'مِيم',   translit: 'ميم',    base: 'م', fa: 'مَ', fa_r: 'مَ',  ki: 'مِ', ki_r: 'مِ',  du: 'مُ', du_r: 'مُ',  sFa: 'مَ', sKi: 'مِ', sDu: 'مُ' },
+    { name: 'نُون',   translit: 'نون',    base: 'ن', fa: 'نَ', fa_r: 'نَ',  ki: 'نِ', ki_r: 'نِ',  du: 'نُ', du_r: 'نُ',  sFa: 'نَ', sKi: 'نِ', sDu: 'نُ' },
+    { name: 'هَاء',  translit: 'هاء',    base: 'ه', fa: 'هَ', fa_r: 'هَ',  ki: 'هِ', ki_r: 'هِ',  du: 'هُ', du_r: 'هُ',  sFa: 'هَ', sKi: 'هِ', sDu: 'هُ' },
+    { name: 'وَاو',   translit: 'واو',    base: 'و', fa: 'وَ', fa_r: 'وَ',  ki: 'وِ', ki_r: 'وِ',  du: 'وُ', du_r: 'وُ',  sFa: 'وَ', sKi: 'وِ', sDu: 'وُ' },
+    { name: 'يَاء',    translit: 'ياء',    base: 'ي', fa: 'يَ', fa_r: 'يَ',  ki: 'يِ', ki_r: 'يِ',  du: 'يُ', du_r: 'يُ',  sFa: 'يَ', sKi: 'يِ', sDu: 'يُ' }
+  ];
+
+  // ===== Audio (Web Speech API) =====
+  let arabicVoice = null;
+  const statusEl = document.getElementById('voice-status');
+
+  function pickVoice() {
+    const voices = speechSynthesis.getVoices();
+    if (!voices.length) return;
+    arabicVoice =
+      voices.find(v => /ar-SA|ar_SA/i.test(v.lang)) ||
+      voices.find(v => /ar-EG|ar_EG/i.test(v.lang)) ||
+      voices.find(v => /^ar/i.test(v.lang)) ||
+      null;
+
+    if (arabicVoice) {
+      statusEl.textContent = `الصوت: ${arabicVoice.name}`;
+    } else {
+      statusEl.textContent = 'الصوت العربي غير متوفر على هذا الجهاز — جرّب متصفحًا آخر أو جهازًا مختلفًا للاستماع.';
+    }
+  }
+
+  if ('speechSynthesis' in window) {
+    pickVoice();
+    speechSynthesis.onvoiceschanged = pickVoice;
+  } else {
+    statusEl.textContent = 'الصوت غير مدعوم في هذا المتصفح.';
+  }
+
+  function speak(text, el, rate) {
+    if (!('speechSynthesis' in window)) return;
+    speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'ar-SA';
+    if (arabicVoice) utter.voice = arabicVoice;
+    utter.rate = rate || 0.7;
+    utter.pitch = 1;
+
+    if (el) {
+      el.classList.add('playing');
+      utter.onend = () => el.classList.remove('playing');
+      utter.onerror = () => el.classList.remove('playing');
+    }
+    speechSynthesis.speak(utter);
+  }
+
+  // ===== Build chart =====
+  const chart = document.getElementById('chart');
+  letters.forEach(L => {
+    const row = document.createElement('div');
+    row.className = 'chart-row';
+    row.innerHTML = `
+      <div class="name-col">
+        <span class="name-en">${L.name}</span>
+        <span class="name-translit">${L.translit}</span>
+      </div>
+      <div class="syllable-cell" data-sound="${L.sFa}">
+        <span class="syllable-glyph">${L.fa}</span>
+        <span class="syllable-romanization">${L.fa_r}</span>
+      </div>
+      <div class="syllable-cell" data-sound="${L.sKi}">
+        <span class="syllable-glyph">${L.ki}</span>
+        <span class="syllable-romanization">${L.ki_r}</span>
+      </div>
+      <div class="syllable-cell" data-sound="${L.sDu}">
+        <span class="syllable-glyph">${L.du}</span>
+        <span class="syllable-romanization">${L.du_r}</span>
+      </div>
+    `;
+    row.querySelectorAll('.syllable-cell').forEach(cell => {
+      cell.addEventListener('click', () => speak(cell.dataset.sound, cell));
+    });
+    chart.appendChild(row);
+  });
+
+  // ===== Practice words =====
+  document.querySelectorAll('.practice-word').forEach(w => {
+    w.addEventListener('click', () => speak(w.dataset.word, w, 0.65));
+  });
+</script>
+
+</body>
+</html>
